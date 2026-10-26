@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  nlrk-reader-workstation:
+    container_name: nlrk-reader-workstation
+    image: shaisarov/nlrk-reader-workstation
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9093:80"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - web_rabis_network
+networks:
+  web_rabis_network:
+    external: true
