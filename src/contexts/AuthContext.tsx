@@ -38,11 +38,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const path = location.pathname;
-    const BASENAME = import.meta.env.VITE_APP_BASENAME || "/";
     if (isAuthenticated && path === '/login') {
-      navigate(`${BASENAME}readers`, { replace: true });
+      navigate('/readers', { replace: true });
     } else if (!isAuthenticated && path !== '/' && path !== '/login') {
-      navigate(`${BASENAME}login`, { replace: true });
+      navigate('/login', { replace: true });
     }
   }, [isAuthenticated, location.pathname, navigate]);
 
