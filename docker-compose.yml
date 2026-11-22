@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  nlrk-reader-workstation:
-    container_name: nlrk-reader-workstation
-    image: shaisarov/nlrk-reader-workstation
+  nlrk-reader-workstation-v2:
+    container_name: nlrk-reader-workstation-v2
+    image: shaisarov/nlrk-reader-workstation-v2
     restart: unless-stopped
     build:
       context: .
