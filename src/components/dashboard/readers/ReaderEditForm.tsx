@@ -105,7 +105,7 @@ export function ReaderEditForm({ mode = "create", id }: ReaderEditFormProps) {
       const loadRegistration = async () => {
           setLoading(true);
           try {
-          const response = await adminReaderService.getReaderById(id);
+          const response = await adminReaderService.getReaderByTicketNumber(id);
           const photo = await adminReaderService.getReaderPhoto(id);
           setFormData(editReaderFormDataFromReaderData(response.data.result,photo));
         } catch (error) {

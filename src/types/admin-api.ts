@@ -33,6 +33,6 @@ export interface ReaderApproveResponse {
     oldTicketNumber: number;
     ticketNumber: number;
     barcode: string;
-    status: "pending" | "approved" | "rejected"| "";
+    status: "pending" | "active" | "rejected"| "";
     expirationDate: string;
 }

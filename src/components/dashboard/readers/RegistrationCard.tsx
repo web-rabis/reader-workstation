@@ -67,10 +67,10 @@ export function RegistrationCard({
     <div className="p-4 border rounded-lg  gap-4 hover:bg-muted/50 transition-colors grid grid-cols-1">
       <div className="space-y-1">
         <div className="font-medium grid grid-cols-2">
-            {registration.status=="" && (<>№ {registration.ticketNumber} </>)}
+            {registration.status=="active" && (<>№ {registration.ticketNumber} </>)}
              {registration.lastname} {registration.firstname} {registration.middlename}
         </div>
-        <p className="text-sm text-muted-foreground">{t('yearBirth')}: {registration.yearBirth}</p>
+        <p className="text-sm text-muted-foreground">{t('yearBirth')}: {registration.birthDateYear}</p>
         {registration.barcode && (
           <p className="text-sm text-muted-foreground">{t('barCode')}: {registration.barcode}</p>
         )}
@@ -95,8 +95,8 @@ export function RegistrationCard({
         )}
       </div>
       <div className="flex items-center gap-2">
-          <Badge variant="secondary" className={"w-[100px]"}>{registration.priznakUdal===""?getStatusLabel(registration.status):t("deleted")}</Badge>
-          {(registration.status === "" && registration.priznakUdal==="") && (
+          <Badge variant="secondary" className={"w-[100px]"}>{getStatusLabel(registration.status)}</Badge>
+          {registration.status === "active" && (
             <>
                 <Button
                     variant="outline"
@@ -120,7 +120,7 @@ export function RegistrationCard({
             </>
           )}
 
-          {(registration.status !== "rejected" && registration.status !== "deleted" && registration.priznakUdal==="") &&(
+          {(registration.status !== "rejected" && registration.status !== "deleted") &&(
             <Button
                 variant="outline"
                 size="sm"
@@ -132,7 +132,7 @@ export function RegistrationCard({
             </Button>
           )}
 
-          {(registration.status === "pending" && registration.priznakUdal==="") && (
+          {registration.status === "pending" && (
             <>
                 <Button
                     variant="outline"
@@ -153,7 +153,7 @@ export function RegistrationCard({
             </>
           )}
 
-          {(registration.status === "" && registration.priznakUdal==="") && (
+          {registration.status === "active" && (
               <Button
                   variant="outline"
                   size="sm"

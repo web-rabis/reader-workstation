@@ -1,18 +1,18 @@
 import {ApiResponse, Dictionary, Paging} from "@/types/api.ts";
 import apiClient from "@/services/api-client.ts";
-import {Control, VisitsStatisticsResponse, VisitsTodayResponse} from "@/types/control.ts";
+import {VisitsStatisticsResponse, VisitsTodayResponse} from "@/types/control.ts";
 import {VisitStatusResponse} from "@/types/control.ts";
 
 
 export const adminControlService = {
     visitsStatus: async (id:string): Promise<ApiResponse<VisitStatusResponse>> => {
-        return await apiClient.get(`/v1/reader/${id}/visits/status`);
+        return await apiClient.get(`/v1/visits/${id}/status`);
     },
     visitsCheckIn: async (id:number): Promise<ApiResponse<string>> => {
-        return await apiClient.post(`/v1/reader/${id}/visits/check-in`);
+        return await apiClient.post(`/v1/visits/${id}/check-in`);
     },
     visitsCheckOut: async (id:number): Promise<ApiResponse<string>> => {
-        return await apiClient.post(`/v1/reader/${id}/visits/check-out`);
+        return await apiClient.post(`/v1/visits/${id}/check-out`);
     },
     visitsToday: async (paging:Paging): Promise<ApiResponse<VisitsTodayResponse>> => {
         const queryParams = new URLSearchParams()
@@ -21,9 +21,9 @@ export const adminControlService = {
         if (paging.orderBy !== undefined) queryParams.append('orderBy', paging.orderBy)
         if (paging.order !== undefined) queryParams.append('order', String(paging.order))
 
-        return await apiClient.get(`/v1/reader/visits/today?${queryParams.toString()}`);
+        return await apiClient.get(`/v1/visits/today?${queryParams.toString()}`);
     },
     visitsStatistics: async (): Promise<ApiResponse<VisitsStatisticsResponse>> => {
-        return await apiClient.get(`/v1/reader/visits/statistics`);
+        return await apiClient.get(`/v1/visits/statistics`);
     },
 };

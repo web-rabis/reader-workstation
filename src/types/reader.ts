@@ -3,7 +3,10 @@ import {Dictionary, TypeCard} from "@/types/dictionary.ts";
 export interface Reader {
     photo:string;
 
+    globalTicketNumber:number;
     ticketNumber:number;
+    libraryId:number;
+    branchId:number;
     barcode:string;
     registrationDate:string;
     expirationDate:string;
@@ -13,7 +16,7 @@ export interface Reader {
     iin:string
     lastname:string;
     middlename?:string;
-    yearBirth:number;
+    birthDateYear:number;
     birthDate:string;
     sex?:Dictionary;
     nationality?: Dictionary
@@ -36,7 +39,7 @@ export interface Reader {
     course?:string
     readersHall?:string;
     note?:string;
-    priznakUdal?:string;
+    photoKey?:string;
     isEmployee?:boolean;
 }
 export interface ReaderUser {
@@ -47,7 +50,7 @@ export interface ReaderUser {
     iin:string
     lastname:string;
     middlename?:string;
-    yearBirth:number
+    birthDateYear:number
     birthDate:string;
     sex?:Dictionary;
     nationality?: Dictionary

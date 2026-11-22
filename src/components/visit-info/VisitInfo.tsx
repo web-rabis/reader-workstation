@@ -1,5 +1,5 @@
 import {Reader} from "@/types/reader.ts";
-import {Control} from "@/types/control.ts";
+import {Visit} from "@/types/control.ts";
 import {useCallback, useEffect, useState} from "react";
 import {adminReaderService} from "@/services/admin-service.ts";
 import {toast} from "sonner";
@@ -9,7 +9,7 @@ import {useTranslation} from "@/contexts/LanguageContext.tsx";
 
 
 interface VisitInfoProps {
-    visit: Control;
+    visit: Visit;
 }
 
 export function VisitInfo({visit }: VisitInfoProps) {
@@ -21,8 +21,8 @@ export function VisitInfo({visit }: VisitInfoProps) {
     }, [visit]);
     const fetchReader = useCallback(async () => {
         try {
-            const response = await adminReaderService.getReaderById(visit.ticketNumber);
-            const responsePhoto = await adminReaderService.getReaderPhoto(visit.ticketNumber);
+            const response = await adminReaderService.getReaderByGlobalTicketNumber(visit.readerId);
+            const responsePhoto = await adminReaderService.getReaderPhoto(response.data.result.ticketNumber);
             setReader(response.data.result);
             setReaderPhoto(responsePhoto);
         } catch (error) {
@@ -47,9 +47,13 @@ export function VisitInfo({visit }: VisitInfoProps) {
             {reader.iin && (
                 <p className="text-sm text-muted-foreground">{t('iin')}: {reader.iin}</p>
             )}
-            <p className="text-sm text-muted-foreground">{t('visitDate')}: {formatterWithTime.format(new Date(visit.visitDate))}</p>
-            <p className="text-sm text-muted-foreground">КР: {visit.departmentF51}</p>
-            <p className="text-sm text-muted-foreground">{t('employeeVisit')}: {visit.userVisit}</p>
+            {visit.checkedInAt && (
+                <p className="text-sm text-muted-foreground">{t('visitDate')}: {formatterWithTime.format(new Date(visit.checkedInAt))}</p>
+            )}
+            {visit.departmentId !== undefined && (
+                <p className="text-sm text-muted-foreground">КР: {visit.departmentId}</p>
+            )}
+            <p className="text-sm text-muted-foreground">{t('employeeVisit')}: {visit.checkedInBy}</p>
         </div>
     </div>
 }

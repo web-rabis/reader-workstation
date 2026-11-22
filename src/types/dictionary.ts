@@ -11,14 +11,16 @@ export interface Dictionary {
 }
 export interface TypeCard {
     id: number;
+    libraryId: number;
+    branchId: number | null;
     type: string;
     code: string;
-    web: string;
+    website: string;
     email: string;
-    instagram: string;
-    isTerm: boolean;
-    photo: string;
-    photoTitle: string;
+    instagramUrl: string;
+    termYears: number | null;
+    photoKey: string;
+    titlePhotoKey: string;
 }
 export interface DictionaryListResponse<T> {
     count: number;

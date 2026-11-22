@@ -8,7 +8,7 @@ export interface VisitStatusResponse {
 }
 
 export interface VisitsTodayResponse {
-    result:Control[];
+    result:Visit[];
     count:number;
 }
 
@@ -57,14 +57,14 @@ export interface Department{
     name:string;
 }
 
-export interface Control {
-    ticketNumber:number;
-    visitDate:string;
-    exitDate:string;
-    userVisit:string;
-    userExit:string;
-    departmentF51:string
-    department:string;
-    ordersCount:number;
-    count:number;
+export interface Visit {
+    id:number;
+    readerId:number;
+    libraryId:number;
+    branchId:number;
+    departmentId?:number;
+    checkedInAt?:string;
+    checkedOutAt?:string;
+    checkedInBy:number;
+    checkedOutBy:number;
 }

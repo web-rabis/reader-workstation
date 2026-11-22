@@ -149,9 +149,9 @@ export function ReaderCard({ registration, open, onClose,cropImage }: ReaderCard
                       marginLeft: "20px",
                   }}
                   >
-                      Сайт: {registration.typeCard.web}<br/>
+                      Сайт: {registration.typeCard.website}<br/>
                       email: {registration.typeCard.email}<br/>
-                      instagram: {registration.typeCard.instagram}
+                      instagram: {registration.typeCard.instagramUrl}
                   </div>
 
               </div>

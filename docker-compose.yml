@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "9093:80"
+      - "19093:80"
     environment:
       - NODE_ENV=production
     networks:

@@ -10,12 +10,12 @@ export default defineConfig(({ mode }) => ({
     port: 8081,
     proxy: {
       '/sso/api': {
-        target: 'http://localhost:8089',
+        target: 'http://localhost:8588',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/sso/, ''),
       },
       '/api': {
-        target: 'http://localhost:8015',
+        target: 'http://localhost:8594',
         changeOrigin: true,
       }
     }

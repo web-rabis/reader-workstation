@@ -37,8 +37,12 @@ export const adminReaderService = {
         return await apiClient.put(`/v1/reader/${id}/renewal-registration`);
     },
 
-    getReaderById: async (id: number): Promise<ApiResponse<ReaderByIdResponse>> => {
-        return await apiClient.get(`/v1/reader/${id}`);
+    getReaderByTicketNumber: async (ticketNumber: number): Promise<ApiResponse<ReaderByIdResponse>> => {
+        return await apiClient.get(`/v1/reader/${ticketNumber}`);
+    },
+
+    getReaderByGlobalTicketNumber: async (globalTicketNumber: number): Promise<ApiResponse<ReaderByIdResponse>> => {
+        return await apiClient.get(`/v1/reader/global/${globalTicketNumber}`);
     },
 
     getReaderPhoto: async (id: number): Promise<string> => {
